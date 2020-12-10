@@ -14,6 +14,6 @@ export class LoginComponent implements OnInit {
   }
 
   Navegar(){
-    this.router.navigate(['/usuario']);
+    this.router.navigate(['/usuarios']);
   }
 }

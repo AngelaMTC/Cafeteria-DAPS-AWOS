@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+    <div class="jumbotron">
+        <form (ngSubmit)="registrar(forma)" #forma="ngForm">
+            <h1>Categorias de: <small>Productos</small></h1>
+            <hr>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">Descripcion</span>
+                <input type="text" class="form-control" name="descripcion" [(ngModel)]="categoria.descripcion" required/>
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-2">Usuario</span>
+                <input type="text" class="form-control" name="usuario" [(ngModel)]="categoria.ususario" required/>
+            </div><br>
+            <button type="submit" class="btn btn-block btn-primary">Registrar</button>
+        </form>
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar de Categoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="jumbotron">
+                        <form (ngSubmit)="actualizar(forma)" #actu="ngForm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text col-2">ID</span>
+                                <input type="text" class="form-control" [(ngModel)]="categoria.id" name="id" required/>
+                            </div><br>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text col-3">Categoria</span>
+                                <input type="text" class="form-control" [(ngModel)]="categoria.descripcion" name="id" />
+                            </div><br>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text col-3">Usuario</span>
+                                <input type="text" class="form-control" />
+                            </div><br>
+                            <hr>
+                            <button type="submit" class="btn btn-block btn-warning">Actualizar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead class="bg-light">
+            <tr style="color: rgb(8, 8, 8);">
+                <th scope="col">ID</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            <tr *ngFor="let tab of tabla; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{tab._id}}</td>
+                <td>{{tab.descripcion}}</td>
+                <td><button type="button" class="btn btn-warning" (click)="dispararActualizar(tab._id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Actualizar
+                  </button>
+                    <button class="btn btn-danger ml-3" (click)="elimiar(tab._id)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

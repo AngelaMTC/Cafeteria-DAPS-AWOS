@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+    <div class="jumbotron">
+        <form (ngSubmit)="registrar(forma)" #forma="ngForm">
+            <h1>Registro de: <small>Productos</small></h1>
+            <hr>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Nombre</span>
+                <input type="text" class="form-control" name="nombre" [(ngModel)]="productos.nombre" required />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Categoria</span>
+                <input type="text" class="form-control" name="categoria" [(ngModel)]="productos.categoria" required/>
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Precio</span>
+                <input type="number" class="form-control" name="precioUni" [(ngModel)]="productos.precioUni" />
+            </div><br>
+            <div class="input-group-prepend">
+                <span class="input-group-text col-1">Usuario</span>
+                <input type="text" class="form-control" name="usuario" [(ngModel)]="productos.usuario" required/>
+            </div> <br>
+            <button type="submit" class="btn btn-block btn-primary">Registrar</button>
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar productos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="jumbotron">
+                        <form (ngSubmit)="actualizar(forma)" #actu="ngForm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text col-2">ID</span>
+                                <input type="text" class="form-control" name="id" [(ngModel)]="productos.id" required/>
+                            </div><br>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text col-3">Nombre</span>
+                                <input type="text" class="form-control" name="nombre" [(ngModel)]="productos.nombre" required/>
+                            </div><br>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text col-3">Categoria</span>
+                                <input type="text" class="form-control" name="categoria" [(ngModel)]="productos.categoria" required/>
+                            </div><br>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text col-2">Precio</span>
+                                <input type="number" class="form-control" name="precio" [(ngModel)]="productos.precioUni" required/>
+                            </div><br>
+                            <button type="submit" class="btn btn-block btn-warning">Actualizar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <table class="table col-xs-12">
+        <thead class="bg-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Disponibilidad</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-secondary">
+            <tr *ngFor="let tab of tabla; let i = index">
+                <th scope="row">{{tab._id}}</th>
+                <td>{{tab.disponible}}</td>
+                <td>{{tab.nombre}}</td>
+                <td>{{tab.precioUni}}</td>
+                <td><button type="button" class="btn btn-warning" (click)="Actualizar(tab._id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Actualizar
+                  </button>
+                    <button class="btn btn-danger ml-3" (click)="elimiar(tab._id)">Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

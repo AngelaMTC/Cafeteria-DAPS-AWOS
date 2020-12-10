@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductosComponent } from './components/productos/productos.component';
-import { CategoriaComponent } from './components/categoria/categoria.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { LoginComponent } from './components/login/login.component';
-import { InfoComponent } from './components/info/info.component';
+import { ProductosComponent } from './componentes/productos/productos.component';
+import { CategoriaComponent } from './componentes/categoria/categoria.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { InfoComponent } from './componentes/info/info.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { PipesComponent } from './componentes/pipes/pipes.component';
 
 const routes: Routes = [
-  {path: 'info', component: InfoComponent },
   {path: 'productos', component: ProductosComponent },
   {path: 'categoria', component: CategoriaComponent},
   {path: 'usuarios', component: UsuariosComponent },
   {path: 'navbar', component: NavbarComponent },
+  {path: 'info', component: InfoComponent},
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'}
+  {path: 'pipes', component: PipesComponent}
+  // {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({

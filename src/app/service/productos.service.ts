@@ -10,19 +10,19 @@ export class ProductosService {
   constructor(private http: HttpClient) { }
   url = `https://equipo3-4a-2do-parcial-awos.herokuapp.com`;
 
-  obtenerPro(){
+  obtenerProductos(){
     return this.http.get(`${this.url}/producto`).toPromise();
   }
 
-  registarPro( usuario: ProductosModel) {
+  registarProducto( usuario: ProductosModel) {
     return this.http.post(`${this.url}/producto`, usuario).toPromise();
   }
 
- actualizarPro(id: string, usuario: ProductosModel) {
+ actualizarProducto(id: string, usuario: ProductosModel) {
   return this.http.put(`${this.url}/producto/${id}`, usuario).toPromise();
  }
 
- eliminarPro(id: string) {
+ eliminarProducto(id: string) {
   return this.http.delete(`${this.url}/producto/${id}`).toPromise();
  }
 

@@ -10,19 +10,19 @@ export class CategoriaService {
   constructor(private http: HttpClient) { }
   url = `https://equipo3-4a-2do-parcial-awos.herokuapp.com`;
 
-  obtenerCat(){
+  obtenerCategorias(){
     return this.http.get(`${this.url}/categoria`).toPromise();
   }
 
-  registrarCat( usuario: CategoriaModel) {
+  registarCategoria( usuario: CategoriaModel) {
     return this.http.post(`${this.url}/categoria`, usuario).toPromise();
   }
 
- actualizarCat(id: string, usuario: CategoriaModel) {
+ actualizarCategoria(id: string, usuario: CategoriaModel) {
   return this.http.put(`${this.url}/categoria/${id}`, usuario).toPromise();
  }
 
- eliminarCat(id: string) {
+ eliminarCategoria(id: string) {
   return this.http.delete(`${this.url}/categoria/${id}`).toPromise();
  }
 

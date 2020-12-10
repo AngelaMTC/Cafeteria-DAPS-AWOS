@@ -13,22 +13,20 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  Usuarios(){
-    this.router.navigate(['/usuario']);
+  NavegaraUsuarios(){
+    this.router.navigate(['/usuarios']);
   }
-  Categorias(){
+  NavegaraCategorias(){
     this.router.navigate(['/categoria']);
   }
-  Productos(){
+  NavegaraProductos(){
     this.router.navigate(['/productos']);
   }
-  Info(){
+  NavegaraAcercade(){
     this.router.navigate(['/info']);
   }
-  Navegar(){
-    this.router.navigate(['/login']);
-  }
-  Pipes(){
+  NavegarPipes(){
     this.router.navigate(['/pipes']);
   }
+
 }

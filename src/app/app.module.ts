@@ -3,27 +3,27 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { ProductosComponent } from './components/productos/productos.component';
-import { CategoriaComponent } from './components/categoria/categoria.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { ProductosComponent } from './componentes/productos/productos.component';
+import { CategoriaComponent } from './componentes/categoria/categoria.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
 import { HttpClientModule } from '@angular/common/http';
-import{RouterModule} from '@angular/router';
-import { InfoComponent } from './components/info/info.component';
-import { PipesComponent } from './components/pipes/pipes.component';
+import { InfoComponent } from './componentes/info/info.component';
+import { PipesComponent } from './componentes/pipes/pipes.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent, 
-    InfoComponent,
     ProductosComponent,
     CategoriaComponent,
     UsuariosComponent,
-    LoginComponent,
-    PipesComponent
+    InfoComponent,
+    PipesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,14 +31,14 @@ import { PipesComponent } from './components/pipes/pipes.component';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: LoginComponent},
-      {path: 'usuario', component: UsuariosComponent},
-      {path: 'categoria', component: CategoriaComponent},
-      {path: 'producto', component: ProductosComponent},
-      {path: 'login', component: LoginComponent},
-      {path: 'info', component: InfoComponent},
-      {path: 'pipes', component: PipesComponent}
+  {path: 'productos', component: ProductosComponent },
+  {path: 'categoria', component: CategoriaComponent},
+  {path: 'usuarios', component: UsuariosComponent },
+  {path: 'navbar', component: NavbarComponent },
+  {path: 'info', component: InfoComponent},
+  {path: 'login', component: LoginComponent},
     ])
+
 
   ],
   providers: [],

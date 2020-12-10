@@ -7,21 +7,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuariosService {
   url = `https://equipo3-4a-2do-parcial-awos.herokuapp.com`;
-
+  
   constructor(private http: HttpClient) {}
-  obtenerUsr() {
+  obtenerUsuarios() {
     return this.http.get(`${this.url}/usuario`).toPromise();
   }
 
-  registrarUsr(usuario: UsuarioModel) {
+  registarUsuario(usuario: UsuarioModel) {
     return this.http.post(`${this.url}/usuario`, usuario).toPromise();
   }
 
-  actualizarUsr(id: string, usuario: UsuarioModel) {
+  actualizarUsuario(id: string, usuario: UsuarioModel) {
     return this.http.put(`${this.url}/usuario/${id}`, usuario).toPromise();
   }
 
-  eliminarUsr(id: string) {
+  eliminarUsuario(id: string) {
     return this.http.delete(`${this.url}/usuario/${id}`).toPromise();
   }
 }

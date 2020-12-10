@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsuariosService } from '../../service/usuarios.service';
 import { UsuarioModel } from '../../models/usuario';
 import Swal from 'sweetalert2';
@@ -19,62 +19,66 @@ const Toast = Swal.mixin({
 export class UsuariosComponent implements OnInit {
   @Output() salida = new EventEmitter();
   usuario: UsuarioModel = new UsuarioModel();
-  BD: any = [];
-  idUsrAct: any;
+  tabla: any = [];
+  idUsuarioActualizar: any;
 
   constructor(private usuarioService: UsuariosService) {}
 
   ngOnInit() {
     this.usuarioService
-      .obtenerUsr()
+      .obtenerUsuarios()
       .then((data: any) => {
-        this.BD = data.usuarios;
-        console.log(this.BD);
+        this.tabla = data.usuarios;
+        console.log(this.tabla);
       })
-      .catch((err) => {
-        console.log(err,'Ha ocurrido un error.');
+      .catch((error) => {
+        console.log('pues falló');
       });
   }
 
   registrar(forma: NgForm) {
     this.usuarioService
-      .registrarUsr(this.usuario)
+      .registarUsuario(this.usuario)
       .then((usuario: any) => {
-        Toast.fire(usuario.msg,'Se ha registrado con éxito.');
+        Toast.fire(usuario.msg, '', 'success');
         forma.reset();
         this.salida.emit();
-      }).catch((err: any) => {
-        Toast.fire(err.console.error.msg,'Algo salió mal al momento de registrar.');
+      })
+      .catch((err: any) => {
+        Toast.fire(err.console, '', 'error');
       });
   }
 
   actualizar(forma: NgForm) {
     this.usuarioService
-      .actualizarUsr(this.idUsrAct, this.usuario)
+      .actualizarUsuario(this.idUsuarioActualizar, this.usuario)
       .then((usuario: any) => {
-        Toast.fire(usuario.msg,'Se ha actualizado con éxito.');
+        console.log(this.idUsuarioActualizar);
+        Toast.fire(usuario.msg, '', 'success');
         forma.reset();
         this.salida.emit();
-      }).catch((err: any) => {
-        Toast.fire(err.console.error.msg,'Algo salió mal al momento de actualizar.');
+      })
+      .catch((err: any) => {
+        Toast.fire(err.console, '', 'error');
       });
   }
 
-  Actualizacion(idUsr: string) {
-    this.idUsrAct = idUsr;
-    console.log(this.idUsrAct);
+  dispararActualizar(idUsuario: string) {
+    this.idUsuarioActualizar = idUsuario;
+    console.log(this.idUsuarioActualizar);
   }
 
-  eliminar(idUsr: string) {
-    this.idUsrAct = idUsr;
-    console.log(idUsr);
+  elimiar(idUsuario: string) {
+    this.idUsuarioActualizar = idUsuario;
+    console.log(idUsuario);
     this.usuarioService
-      .eliminarUsr(idUsr)
+      .eliminarUsuario(idUsuario)
       .then((usuario: any) => {
-        Toast.fire(usuario.msg,'Se ha eliminado correctamente.');
+        Toast.fire(usuario.msg, '', 'success');
         this.salida.emit();
-      }).catch((err: any) => {
-        Toast.fire(err.console.err.msg, 'Algo salió mal al momento de eliminar.');
+      })
+      .catch((err: any) => {
+        Toast.fire(err.console.error.msg, '', 'error');
       });
   }
 }

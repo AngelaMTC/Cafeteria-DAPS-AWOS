@@ -19,59 +19,64 @@ const Toast = Swal.mixin({
 export class ProductosComponent implements OnInit {
   @Output() salida = new EventEmitter();
   productos: ProductosModel = new ProductosModel();
-  BD: any = [];
-  IDProAct: string;
+  tabla: any = [];
+  idProductosActualizar: string;
+
 
   constructor(private productosService: ProductosService) { }
 
   ngOnInit() {
     this.productosService
-      .obtenerPro()
+      .obtenerProductos()
       .then((data: any) => {
-        this.BD = data.productos;
-        console.log(this.BD);
-      }).catch((error) => {
+        this.tabla = data.productos;
+        console.log(this.tabla);
+      })
+      .catch((error) => {
         console.log('Ha ocurrido un error.');
       });
   }
 
   registrar(forma: NgForm) {
     this.productosService
-      .registarPro(this.productos)
+      .registarProducto(this.productos)
       .then((productos: any) => {
-        Toast.fire(productos.msg, 'Se ha registrado exitosamente.');
+        Toast.fire(productos.msg, '', 'success');
         forma.reset();
         this.salida.emit();
-      }).catch((err: any) => {
-        Toast.fire(err.console.error.msg, 'Ha ocurrido un error al momento de registrar.');
+      })
+      .catch((err: any) => {
+        Toast.fire(err.console, '', 'error');
       });
   }
   actualizar(forma: NgForm) {
     this.productosService
-      .actualizarPro(this.IDProAct, this.productos)
+      .actualizarProducto(this.idProductosActualizar, this.productos)
       .then((productos: any) => {
-        Toast.fire(productos.msg, 'Se ha actualizado exitosamente.');
+        Toast.fire(productos.msg, '', 'success');
         forma.reset();
         this.salida.emit();
-      }).catch((err: any) => {
-        Toast.fire(err.console.error.msg, 'Ha ocurrido un error al momento de actualizar.');
+      })
+      .catch((err: any) => {
+        Toast.fire(err.console.error.msg, '', 'error');
       });
   }
 
-  Actualizacion(idUsuario: string) {
-    this.IDProAct = idUsuario;
+  Actualizar(idUsuario: string) {
+    this.idProductosActualizar = idUsuario;
     console.log(idUsuario);
   }
   eliminar(idProducto: string) {
-    this.IDProAct = idProducto;
+    this.idProductosActualizar = idProducto;
     console.log(idProducto);
     this.productosService
-      .eliminarPro(idProducto)
+      .eliminarProducto(idProducto)
       .then((usuario: any) => {
-        Toast.fire(usuario.msg, 'Se ha eliminado con éxito.');
+        Toast.fire(usuario.msg, '', 'success');
         this.salida.emit();
-      }).catch((err: any) => {
-        Toast.fire(err.console.error.msg, 'Ha ocurrido un error al momento de eliminar.');
+      })
+      .catch((err: any) => {
+        Toast.fire(err.console.error.msg, '', 'error');
       });
   }
 
