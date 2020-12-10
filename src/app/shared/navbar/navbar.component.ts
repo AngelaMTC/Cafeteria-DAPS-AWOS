@@ -28,5 +28,7 @@ export class NavbarComponent implements OnInit {
   Navegar(){
     this.router.navigate(['/login']);
   }
-
+  Pipes(){
+    this.router.navigate(['/pipes']);
+  }
 }

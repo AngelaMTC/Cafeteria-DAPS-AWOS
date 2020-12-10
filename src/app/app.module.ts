@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import{RouterModule} from '@angular/router';
 import { InfoComponent } from './components/info/info.component';
+import { PipesComponent } from './components/pipes/pipes.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { InfoComponent } from './components/info/info.component';
     ProductosComponent,
     CategoriaComponent,
     UsuariosComponent,
-    LoginComponent
+    LoginComponent,
+    PipesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { InfoComponent } from './components/info/info.component';
       {path: 'categoria', component: CategoriaComponent},
       {path: 'producto', component: ProductosComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'info', component: InfoComponent}
+      {path: 'info', component: InfoComponent},
+      {path: 'pipes', component: PipesComponent}
     ])
 
   ],
