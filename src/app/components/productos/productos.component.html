@@ -1,0 +1,105 @@
+<br>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://img.freepik.com/foto-gratis/dulces-paletas-mermelada-azucar-varios-colores-dulces-coloridos_43518-183.jpg?size=626&ext=jpg" class="d-block w-50" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://www.elsoldetoluca.com.mx/incoming/l4jy98-tonayan-creador-medium.jpg/ALTERNATES/LANDSCAPE_768/tonayan-creador-medium.jpg" class="d-block w-50" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://dam.cocinafacil.com.mx/wp-content/uploads/2018/08/pozole-rojo.jpg" class="d-block w-50" alt="...">
+    </div>
+  </div>
+</div>
+<br>
+    
+    
+    <div class="jumbotron">
+      <form (ngSubmit)= "registrar(forma)" #forma = "ngForm">
+      <h1>Registro de: <small>Productos</small></h1>
+      <hr>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Nombre</span>
+            <input type="text" class="form-control"/>
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Categoria</span>
+            <input type="text" class="form-control"/>
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Precio</span>
+            <input type="number" class="form-control"/>
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Usuario</span>
+            <input type="text" class="form-control"/>
+        </div> <br>
+        <button type="submit" class="btn btn-block btn-outline-success">Registrar</button>
+      </form>
+    </div>
+
+    <div class="jumbotron">
+      <h1>Actualización de: <small>Productos</small></h1>
+      <hr>
+      <div class="input-group-prepend">
+        <span class="input-group-text col-1">ID</span>
+        <input type="text" class="form-control"/>
+    </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Nombre</span>
+            <input type="text" class="form-control"/>
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Categoria</span>
+            <input type="text" class="form-control"/>
+        </div><br>
+        <div class="input-group-prepend">
+            <span class="input-group-text col-1">Precio</span>
+            <input type="number" class="form-control"/>
+        </div><br>
+        <button type="submit" class="btn btn-block btn-outline-warning">Actualizar</button>
+    </div>
+
+    <table class="table col-xs-12">
+      <thead class="bg-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Disponibilidad</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="table-secondary">
+        <tr *ngFor="let produ of BD; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{produ.disponible}}</td>
+          <td>{{produ.nombre}}</td>
+          <td>{{produ.categoria}}</td>
+          <td>{{produ.precioUni}}</td>
+          <td>{{produ.usuario}}</td>
+          <td>
+            <button class="btn btn-outline-warning " (click)="Actualizar(pro._id)">Actualizar</button>
+            <button class="btn btn-outline-danger ml-3" (click)="eliminar(pro._id)">Eliminar</button>
+    
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <h2>Galería de: <small>Productos</small></h2>
+    <div class="upload-div">
+      <!-- File upload form -->
+      <form id="uploadForm" enctype="multipart/form-data">
+          <label>Subir imagen</label>
+          <input type="file" name="images[]" id="fileInput" multiple >
+          <input type="submit" name="submit" value="UPLOAD"/>
+      </form>
+          
+      <!-- Display upload status -->
+      <div id="uploadStatus"></div>
+  </div>

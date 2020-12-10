@@ -1,0 +1,81 @@
+ <div class="jumbotron">
+    <form (ngSubmit)="registrar(forma)" #forma="ngForm">
+      <h1>Registro de: <small>Usuarios</small></h1>
+      <hr>
+      <div class="input-group-prepend">
+        <span class="input-group-text col-2">Nombre(s)</span>
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre" required />
+      </div><br>
+      <div class="input-group-prepend">
+        <span class="input-group-text col-2">e-mail</span>
+        <input type="email" class="form-control" name="email" [(ngModel)]="usuario.email" required />
+      </div><br>
+      <div class="input-group-prepend">
+        <span class="input-group-text col-2">Password</span>
+        <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" required />
+      </div><br>
+      <button type="submit" class="btn btn-block btn-outline-success">Registrar</button>
+    </form>
+  </div>
+
+  <div class="jumbotron">
+    <h1>Actualización de: <small>Usuario</small></h1>
+    <hr>
+    <form (ngSubmit)="actualizar(forma)" #forma="ngForm">
+      <div class="input-group-prepend">
+        <span class="input-group-text col-2">ID</span>
+        <input type="text" class="form-control invalid" name="nombre" required />
+      </div><br>
+      <div class="input-group-prepend">
+        <span class="input-group-text col-2">Nombre(s)</span>
+        <input type="text" class="form-control" name="nombre" required />
+      </div><br>
+      <div class="input-group-prepend">
+        <span class="input-group-text col-2">e-mail</span>
+        <input type="email" class="form-control" required />
+      </div><br>
+      <button type="submit" class="btn btn-block btn-outline-warning" aria-invalid="false">Actualizar</button>
+    </form>
+  </div>
+
+  <table class="table">
+    <thead class="bg-dark">
+      <tr>
+        <th scope="col">Numero</th>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre(s)</th>
+        <th scope="col">Apellido(s)</th>
+        <th scope="col">e-mail</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="table-secondary">
+      <tr *ngFor="let usr of BD; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{usr._id}}</td>
+        <td>{{usr.nombre}}</td>
+        <td>{{usr.apellido}}</td>
+        <td>{{usr.email}}</td>
+        <td>{{usr.estado}}</td>
+        <td>
+          <button class="btn btn-outline-warning " (click)="Actualizar(usr._id)">Actualizar</button>
+          <button class="btn btn-outline-danger ml-3" (click)="eliminar(usr._id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <hr>
+  <h2>Galería de: <small>Usuarios</small></h2>
+  <div class="upload-div">
+    <!-- File upload form -->
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label>Subir imagen</label>
+        <input type="file" name="images[]" id="fileInput" multiple >
+        <input type="submit" name="submit" value="UPLOAD"/>
+    </form>
+        
+    <!-- Display upload status -->
+    <div id="uploadStatus"></div>
+</div>
